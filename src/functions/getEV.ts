@@ -10,7 +10,6 @@ export const getEV = (inputMaterias: Materia[], materiaDataset: Materia[]) => {
     const possibleMateriaTypes = getNameList(materiaDataset).filter((name) => {
         return !inputMateriaTypes.includes(name);
     });
-    console.log("🚀 ~ possibleMateriaTypes:", possibleMateriaTypes);
 
     const allPossibleMaterias = inputMaterias
         .map((inputMateria) =>
@@ -21,7 +20,6 @@ export const getEV = (inputMaterias: Materia[], materiaDataset: Materia[]) => {
             )
         )
         .flat();
-    console.table(allPossibleMaterias);
 
     const allPossibleMateriasUp = inputMaterias
         .map((inputMateria) =>
@@ -33,5 +31,17 @@ export const getEV = (inputMaterias: Materia[], materiaDataset: Materia[]) => {
             )
         )
         .flat();
-    console.table(allPossibleMateriasUp);
+
+    const probability = (0.95 * 0.2) / possibleMateriaTypes.length;
+    const probabilityUp = (0.05 * 0.2) / possibleMateriaTypes.length;
+
+    const ev = allPossibleMaterias.reduce<number>((previous, materia) => {
+        return previous + materia.minPrice * probability;
+    }, 0);
+
+    const evUp = allPossibleMateriasUp.reduce<number>((previous, materia) => {
+        return previous + materia.minPrice * probabilityUp;
+    }, 0);
+
+    return ev + evUp;
 };

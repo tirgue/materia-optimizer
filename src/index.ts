@@ -1,11 +1,10 @@
 import { computeMateriaDataset } from "./functions/computeMateriaDataset";
-import { getEV } from "./functions/getEV";
 import { getMateriaBy } from "./functions/getMateriaBy";
-import { Materia } from "./interfaces";
+import { getTransmutationProfit } from "./functions/getTransmutationProfit";
 
 const main = async () => {
     const materiaDataset = await computeMateriaDataset();
-    getEV(
+    const income = getTransmutationProfit(
         [
             getMateriaBy("id", 25186, materiaDataset)[0],
             getMateriaBy("id", 25186, materiaDataset)[0],
@@ -15,6 +14,7 @@ const main = async () => {
         ],
         materiaDataset
     );
+    console.log("🚀 ~ file: index.ts:18 ~ main ~ ev:", income);
 };
 
 main();
