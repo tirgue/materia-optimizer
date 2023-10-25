@@ -33,7 +33,7 @@ export const materiaCombinationLoop = (materiaDataset: Materia[]) => {
                         if (profit > 2000) {
                             fs.appendFileSync(
                                 "./dump",
-                                `${inputMateria.join("-")},${profit}\n`
+                                `${inputMateria.map(({id}) => id).join("-")},${profit}\n`
                             );
                         }
                     });
