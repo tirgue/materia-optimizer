@@ -16,9 +16,9 @@ export const computeMateriaDataset = async (
 
         // Get Data without GIL tax and find the min for Moogle
         const minMateriaData = await getItemData(materia.id, 9999999, 1);
-        const minPrice = minMateriaData.listings.find(
-            ({ worldName }) => worldName === realm
-        ).pricePerUnit;
+        const minPrice =
+            minMateriaData.listings.find(({ worldName }) => worldName === realm)
+                .pricePerUnit * 0.95;
 
         return {
             ...materia,
