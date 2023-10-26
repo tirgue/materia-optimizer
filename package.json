@@ -4,7 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "build": "tsc",
         "start": "node lib/index.js",
+        "dev": "npm run build && node lib/index.js",
         "watch": "tsc --watch"
     },
     "author": "",
