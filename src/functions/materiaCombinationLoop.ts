@@ -11,6 +11,8 @@ export const materiaCombinationLoop = (
     fileName ??= "./dump";
 
     materiaDataset.forEach((m1, i) => {
+        console.log(`${i}/${materiaDataset.length}`);
+
         if (m1.rank === 10) return;
 
         materiaDataset.forEach((m2) => {
@@ -35,7 +37,7 @@ export const materiaCombinationLoop = (
 
                         const inputMateria = [m1, m2, m3, m4, m5];
 
-                        const profit = getTransmutationProfit(
+                        const [profit, roi] = getTransmutationProfit(
                             inputMateria,
                             materiaDataset
                         );
@@ -45,7 +47,7 @@ export const materiaCombinationLoop = (
                                 fileName,
                                 `${inputMateria
                                     .map(({ id }) => id)
-                                    .join("-")},${profit}\n`
+                                    .join("-")},${profit},${roi}\n`
                             );
                         }
                     });
