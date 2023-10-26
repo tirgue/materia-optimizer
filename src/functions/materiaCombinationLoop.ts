@@ -47,7 +47,7 @@ export const materiaCombinationLoop = (
                                 fileName,
                                 `${inputMateria
                                     .map(({ id }) => id)
-                                    .join("-")},${profit},${roi}\n`
+                                    .join("-")},${Math.round(profit)},${roi}\n`
                             );
                         }
                     });
